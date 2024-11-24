@@ -1,12 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flame/collisions.dart';
-import 'package:flame/input.dart';
-import 'package:flame/flame.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
-
 import 'ground.dart';
-import 'Mario.dart';
+import 'game.dart';
 import 'enemy.dart';
 
 class Player extends SpriteComponent with KeyboardHandler, CollisionCallbacks, HasGameRef<MarioGame> {
@@ -22,6 +19,7 @@ class Player extends SpriteComponent with KeyboardHandler, CollisionCallbacks, H
   @override
   Future<void> onLoad() async {
     super.onLoad();
+    // load the heroe
     sprite = await Sprite.load('unicorn.png');
     add(RectangleHitbox());
   }
@@ -45,19 +43,19 @@ class Player extends SpriteComponent with KeyboardHandler, CollisionCallbacks, H
       } else if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
         velocity.x = -200;
       }
-
+      // set space to single jump
       if (keysPressed.contains(LogicalKeyboardKey.space) && jumpCount < 2) {
         velocity.y = jumpSpeed;
         jumpCount++;
         isOnGround = false;
       }
-
+      // set enter to double jump
       if (keysPressed.contains(LogicalKeyboardKey.enter) && !isOnGround) {
         velocity.y = higherJumpSpeed;
         jumpCount++;
       }
     }
-
+    // set left and right arrow
     if (event is KeyUpEvent) {
       if (!keysPressed.contains(LogicalKeyboardKey.arrowRight) &&
           !keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
@@ -70,6 +68,7 @@ class Player extends SpriteComponent with KeyboardHandler, CollisionCallbacks, H
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollision(intersectionPoints, other);
     if (other is Ground) {
       isOnGround = true;
       jumpCount = 0;

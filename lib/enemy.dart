@@ -1,8 +1,8 @@
 import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/collisions.dart';
-import 'package:flame/timer.dart';
 
+// set the enemy class
 class Enemy extends SpriteComponent with CollisionCallbacks, HasGameRef {
   Vector2 velocity = Vector2.zero();
   final double speed = 100; // Speed of the enemy
@@ -18,7 +18,8 @@ class Enemy extends SpriteComponent with CollisionCallbacks, HasGameRef {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    sprite = await Sprite.load('dragon.png'); // Ensure 'enemy.png' is in the correct assets folder.
+    // load the dragon
+    sprite = await Sprite.load('dragon.png'); // Ensure it is in the correct assets folder.
     add(RectangleHitbox());
     _directionChangeTimer.start();
   }

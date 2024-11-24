@@ -2,8 +2,6 @@ import 'dart:math';
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
-import 'package:flame/collisions.dart';
-import 'package:flame/timer.dart';
 import 'package:flutter/material.dart';
 import 'player.dart';
 import 'enemy.dart';
@@ -100,7 +98,6 @@ class MarioGame extends FlameGame with HasKeyboardHandlerComponents, HasCollisio
     dragonCounter++;
     // Update the text component with the new counter value.
     dragonCounterText.text = 'Dragons: $dragonCounter';
-    print('Dragons collected: $dragonCounter'); // Optional: For debugging.
   }
 
   // Method to restart the game, resetting the counter and removing the overlay.
@@ -109,7 +106,10 @@ class MarioGame extends FlameGame with HasKeyboardHandlerComponents, HasCollisio
     enemiesSpawned = 0;
     overlays.remove('WinScreen');
     resumeEngine();
-    player.position = Vector2(100, size.y - 150); // Reset the player's position.
+    player.position = Vector2(
+      100, 
+      size.y - 50 - player.size.y // Ground's height is 50 // Reset the player's position.
+    );
     dragonCounterText.text = 'Dragons: 0'; // Reset the displayed counter.
     _spawnTimer = Timer(
       _randomInterval(),

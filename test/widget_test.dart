@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mariobros/Mario.dart';
+import 'package:mariobros/game.dart';
 
 import 'package:mariobros/main.dart';
 

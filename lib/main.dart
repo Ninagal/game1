@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
-import 'Mario.dart';
+import 'game.dart';
 
 void main() {
   runApp(

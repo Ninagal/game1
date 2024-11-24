@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'Mario.dart';
+import 'game.dart';
 
 class WinScreen extends StatelessWidget {
   final MarioGame game;
 
-  const WinScreen(this.game, {Key? key}) : super(key: key);
+  const WinScreen(this.game, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,19 +12,19 @@ class WinScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'You Win!',
             style: TextStyle(
               fontSize: 200,
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               game.restart(); // Restarts the game when the button is pressed.
             },
-            child: Text('Play Again'),
+            child: const Text('Play Again'),
           ),
         ],
       ),
